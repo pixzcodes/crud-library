@@ -1,0 +1,13 @@
+#book-shelves {
+    display: flex;
+    height: 100vh;
+    flex-wrap: wrap;
+}
+.book {
+    border: black 1px solid;
+    border-radius: 15px;
+    padding: 15px;
+    width: 150px;
+    height: 150px;
+    margin: 5px;
+}
