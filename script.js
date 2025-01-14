@@ -39,13 +39,41 @@ function displayAllBooks() {
         // create a div element for the book and append the
         // book info text to the element
         const newBook = document.createElement("div");
-        const bookInfo = document.createTextNode(book.info());
-        newBook.appendChild(bookInfo);
+
+        // create button for removing book
+        const removeBtn = document.createElement("button");
+        removeBtn.innerHTML = "Remove";
+        removeBtn.classList.add("remove");
+        removeBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            library.splice(i, 1);
+            displayAllBooks();
+        });
+
+        // create change read button
+        const toggleReadBtn = document.createElement("button");
+        toggleReadBtn.innerHTML = "Toggle Read";
+        toggleReadBtn.classList.add("toggleRead");
+        toggleReadBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (book.read) {
+                book.read = false;
+            }
+            else {
+                book.read = true;
+            }
+            displayAllBooks();
+        });
 
         // set the class
         newBook.classList.add("book");
         //  and id for the book based on position in library array
         newBook.setAttribute("id", i);
+
+
+        newBook.innerHTML = `<h4>${book.title}</h4><p>by ${book.author}</p><p>pages: ${book.pages}</p><p>read: ${book.read}</p>`;
+        newBook.appendChild(removeBtn);
+        newBook.appendChild(toggleReadBtn);
 
         shelves.appendChild(newBook);
     }
@@ -95,3 +123,5 @@ submitBtn.addEventListener("click", (e) => {
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, true);
 addBookToLibrary("Harry Potter", "J.K. Rowling", 400, false);
 displayAllBooks();
+
+
