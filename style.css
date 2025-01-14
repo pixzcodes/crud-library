@@ -1,6 +1,14 @@
+body {
+    display: flex;
+}
+body > button {
+    height: 100px;
+    width: 300px;
+}
 #book-shelves {
     display: flex;
     height: 100vh;
+    flex-grow: 1;
     flex-wrap: wrap;
 }
 .book {
@@ -10,4 +18,18 @@
     width: 150px;
     height: 150px;
     margin: 5px;
+}
+.form-container {
+    width: 300px;
+    padding: 20px;
+    background-color: gray;
+}
+.form-container > form {
+    display: flex;
+    flex-direction: column;
+}
+.form-container > form button {
+    width: 100px;
+    align-self: center;
+    margin-top: 20px;
 }

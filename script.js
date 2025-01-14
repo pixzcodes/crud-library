@@ -27,6 +27,9 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function displayAllBooks() {
+    // TODO: clear shelves before displaying
+
+
     // get book shelves element
     const shelves = document.getElementById("book-shelves");
 
@@ -48,9 +51,47 @@ function displayAllBooks() {
     }
 }
 
-for (let i = 0; i < 20; i++) {
+// adding click event for new book button
+const newBookBtn = document.querySelector("#btnNewBook");
+newBookBtn.addEventListener("click", () => {
+    const formContainer = document.querySelector(".form-container");
+    formContainer.toggleAttribute("hidden");
+    // hide the new book button too
+    newBookBtn.toggleAttribute("hidden");
+});
 
-    addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, true);
-}
+const submitBtn = document.querySelector("#btnSubmit");
+submitBtn.addEventListener("click", (e) => {
+    // first prevent the button doing what it's supposed to
+    e.preventDefault();
+
+    // grab info
+    const title = document.querySelector("#title");
+    const author = document.querySelector("#author");
+    const pages = document.querySelector("#pages");
+    const readYes = document.querySelector("#readYes");
+
+    // check if read or not
+    let read;
+    if (readYes.checked) {
+        read = true;
+    }
+    else {
+        read = false;
+    }
+
+    // add and display the book
+    addBookToLibrary(title.value, author.value, pages.value, read);
+    displayAllBooks();
+
+    // re-hide the form and un-hide the new book button
+    const newBookBtn = document.querySelector("#btnNewBook");
+    const formContainer = document.querySelector(".form-container");
+    formContainer.toggleAttribute("hidden");
+    newBookBtn.toggleAttribute("hidden");
+
+});
+
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, true);
 addBookToLibrary("Harry Potter", "J.K. Rowling", 400, false);
 displayAllBooks();
