@@ -27,11 +27,11 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function displayAllBooks() {
-    // TODO: clear shelves before displaying
-
-
     // get book shelves element
     const shelves = document.getElementById("book-shelves");
+
+    // first clear the shelves
+    shelves.innerHTML = "";
 
     for (let i = 0; i < library.length; i++) {
         // book object we are using
